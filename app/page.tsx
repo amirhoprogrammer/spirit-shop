@@ -1,7 +1,15 @@
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { FetchPotions } from "@/lib/github";
+import { PotionType } from "@/types/github";
 
 export default async function Home() {
-  const data = await FetchPotions();
+  // const data = await FetchPotions();
+  const poition = await FetchPotions();
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -12,7 +20,27 @@ export default async function Home() {
           Discover magical potions brewed from the powers of popular open-source
         </p>
       </div>
-      {JSON.stringify(data, null, 2)}
+      {/*JSON.stringify(data, null, 2)*/}
+      <div className="mt-8">
+        {poition.map(
+          (
+            { full_name, name, description, topics }: PotionType,
+            index: number
+          ) => (
+            <Card className="" key={`${full_name}-${index}`}>
+              <CardHeader>{name}</CardHeader>
+              <CardContent>{description}</CardContent>
+              <CardFooter>
+                <div className="gap-2 flex items-center">
+                  {topics.map((tag, index) => (
+                    <span key={index}>{tag}</span>
+                  ))}
+                </div>
+              </CardFooter>
+            </Card>
+          )
+        )}
+      </div>
     </main>
   );
 }

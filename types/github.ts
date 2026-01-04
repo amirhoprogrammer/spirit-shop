@@ -13,3 +13,9 @@ export type GithubRepo = {
   language: string;
   updated_at: string;
 };
+
+export type MagicalType = "fire" | "ice" | "electric" | "all";
+export interface PotionType extends GithubRepo {
+  potionEffect: string;
+  magicaltype: MagicalType;
+}

@@ -16,7 +16,7 @@ const transformRepoToPotion = (repo: GithubRepo, index: number) => {
     ...repo,
     topics: repo.topics.slice(0, 3),
     potionEffect: POITION_EFFECT[index % POITION_EFFECT.length],
-    magicalType: MAGICAL_TYPES[index % MAGICAL_TYPES.length],
+    magicalType: MAGICAL_TYPES[index % MAGICAL_TYPES.length].id,
   };
 };
 export async function FetchPotions() {
