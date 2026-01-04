@@ -1,4 +1,7 @@
-export default function Home() {
+import { FetchPotions } from "@/lib/github";
+
+export default async function Home() {
+  const data = await FetchPotions();
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -9,6 +12,7 @@ export default function Home() {
           Discover magical potions brewed from the powers of popular open-source
         </p>
       </div>
+      {JSON.stringify(data, null, 2)}
     </main>
   );
 }

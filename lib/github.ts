@@ -1,0 +1,50 @@
+import { GithubRepo } from "@/types/github";
+import { MAGICAL_TYPES } from "@/utils/constants";
+
+const GITHUB_API_URL = "https://api.github.com";
+
+const POITION_EFFECT = [
+  "Grants the power the rapid development",
+  "Enhances code clarity and maintanabilty",
+  "Boots performance and effeciency",
+  "Provides magical debugging abilities",
+  "Unlocks the secret of clean architecture",
+];
+
+const transformRepoToPotion = (repo: GithubRepo, index: number) => {
+  return {
+    ...repo,
+    topics: repo.topics.slice(0, 3),
+    potionEffect: POITION_EFFECT[index % POITION_EFFECT.length],
+    magicalType: MAGICAL_TYPES[index % MAGICAL_TYPES.length],
+  };
+};
+export async function FetchPotions() {
+  const url = `${GITHUB_API_URL}/search/repositories?q=topic:javascript+stars:>5000&sort=stars&order=desc`;
+  //description
+  const githubToken = process.env.GITHUB_TOKEN;
+  const headers = {
+    Accept: "application/vnd.github+json",
+    ...(githubToken && {
+      Authorization: `Bearer ${githubToken}`,
+    }),
+  };
+  try {
+    const response = await fetch(url, {
+      headers,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch potions`);
+    }
+
+    const data = await response.json();
+    console.log({ data });
+    // return data.items;
+    return data.items.map((repo: GithubRepo, index: number) => {
+      return transformRepoToPotion(repo, index);
+    });
+  } catch (error) {
+    console.error("Failed to Fetch potion", (error as Error).message);
+    return [];
+  }
+}

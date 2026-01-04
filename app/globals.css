@@ -51,6 +51,10 @@
   --color-magic-soft-purple: #e5deff;
   --color-magic-blue: #33c3f0;
   --color-magic-pink: #d946ef;
+
+  --color-element-fire: #ff6b6b;
+  --color-element-ice: #5cceff;
+  --color-element-electric: #ffd43b;
 }
 
 :root {
