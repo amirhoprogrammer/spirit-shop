@@ -39,13 +39,11 @@ export const PotionHeader = ({
       >
         <div
           className={cn(
-            "rounded-full bg-secondary/50 mr-3 flex items-center justify-content",
+            "relative overflow-hidden rounded-full ring-2 ring-purple-500/20",
             size === "medium" ? "w-12 h-12" : "w-10 h-10"
           )}
         >
-          <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-purple-500/20">
-            <Image src={avatar_url} fill alt={login} className="object-cover" />
-          </div>
+          <Image src={avatar_url} fill alt={login} className="object-cover" />
         </div>
       </div>
       <div>
