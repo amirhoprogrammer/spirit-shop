@@ -49,3 +49,30 @@ export async function FetchPotions() {
     return [];
   }
 }
+
+export async function fetchPotion(owner: string, repo: string) {
+  const url = `${GITHUB_API_URL}/repos/${owner}/${repo}`;
+  //description
+  const githubToken = process.env.GITHUB_TOKEN;
+  const headers = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${githubToken}`,
+  };
+  try {
+    const response = await fetch(url, {
+      headers,
+      next: { revalidate: 3600 },
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch potions`);
+    }
+
+    const data = await response.json();
+    console.log("Fetching potion", owner, repo);
+    // return data.items;
+    return transformRepoToPotion(data, 0);
+  } catch (error) {
+    console.error("Failed to Fetch potion", (error as Error).message);
+    return [];
+  }
+}
