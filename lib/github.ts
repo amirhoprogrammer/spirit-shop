@@ -32,6 +32,7 @@ export async function FetchPotions() {
   try {
     const response = await fetch(url, {
       headers,
+      cache: "force-cache",
     });
     if (!response.ok) {
       throw new Error(`Failed to fetch potions`);

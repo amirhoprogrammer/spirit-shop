@@ -1,3 +1,4 @@
+import PotionGrid from "@/components/potions/potion-grid";
 import {
   Card,
   CardContent,
@@ -9,7 +10,7 @@ import { PotionType } from "@/types/github";
 
 export default async function Home() {
   // const data = await FetchPotions();
-  const poition = await FetchPotions();
+  const potion = await FetchPotions();
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -21,26 +22,7 @@ export default async function Home() {
         </p>
       </div>
       {/*JSON.stringify(data, null, 2)*/}
-      <div className="mt-8">
-        {poition.map(
-          (
-            { full_name, name, description, topics }: PotionType,
-            index: number
-          ) => (
-            <Card className="" key={`${full_name}-${index}`}>
-              <CardHeader>{name}</CardHeader>
-              <CardContent>{description}</CardContent>
-              <CardFooter>
-                <div className="gap-2 flex items-center">
-                  {topics.map((tag, index) => (
-                    <span key={index}>{tag}</span>
-                  ))}
-                </div>
-              </CardFooter>
-            </Card>
-          )
-        )}
-      </div>
+      <div className="mt-8">{<PotionGrid potions={potion} />}</div>
     </main>
   );
 }

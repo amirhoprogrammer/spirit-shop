@@ -57,6 +57,16 @@
   --color-element-electric: #ffd43b;
 }
 
+/* @utility potion-card {
+  @apply bg-card rounded-xl overflow-hidden border
+border-purple-700/30 shadow-lg transition-allhover:shadow-purple-500/20 hover:shadow-purple-500/40 
+  background-image: radial-gradient(
+    circle at 100% 0%,
+    rgba(155,135, 245,0.15)
+    transparent 25%
+  );
+} */
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
