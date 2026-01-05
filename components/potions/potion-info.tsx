@@ -20,7 +20,6 @@ export default function PotionInfo({ potion }: PotionInfoType) {
     topics,
     language,
     updated_at,
-    magicalType,
     owner: { login, avatar_url },
   } = potion;
 

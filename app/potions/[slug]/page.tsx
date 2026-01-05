@@ -1,5 +1,4 @@
 import PotionInfo from "@/components/potions/potion-info";
-import PoitionInfo from "@/components/potions/potion-info";
 import { fetchPotion } from "@/lib/github";
 import { notFound } from "next/navigation";
 export async function generateStaticParams() {
@@ -25,10 +24,15 @@ export default async function PotionPage({
 }) {
   const { slug } = await params;
   const [owner, repo] = slug.split("__");
+
   if (!owner || !repo) {
     notFound();
   }
+
   const potion = await fetchPotion(owner, repo);
-  //return <div>My Post : {JSON.stringify(potion)}</div>;
+
+  if (!potion) {
+    notFound();
+  }
   return <PotionInfo potion={potion} />;
 }

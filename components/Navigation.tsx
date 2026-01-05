@@ -11,7 +11,7 @@ export default function Navigation() {
         </span>{" "}
       </Link>
       <Link
-        href="/Mystery potion"
+        href="/mystery-potion"
         className="px-4 py-2 rounded-lg bg-secondary text-foreground hover:bg-secondary/80 transition-colors"
       >
         <span>🔥</span>
