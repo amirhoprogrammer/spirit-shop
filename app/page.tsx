@@ -1,3 +1,4 @@
+import PotionFilters from "@/components/potions/potion-filters";
 import PotionGrid from "@/components/potions/potion-grid";
 import {
   Card,
@@ -8,9 +9,18 @@ import {
 import { FetchPotions } from "@/lib/github";
 import { PotionType } from "@/types/github";
 
-export default async function Home() {
-  // const data = await FetchPotions();
+type PageType = {
+  searchParams: Promise<{
+    type: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: PageType) {
   const potion = await FetchPotions();
+  const { type } = await searchParams;
+  const filteredPotion = type
+    ? potion.filter((potion: PotionType) => potion.magicalType === type)
+    : potion;
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -21,8 +31,12 @@ export default async function Home() {
           Discover magical potions brewed from the powers of popular open-source
         </p>
       </div>
-      {/*JSON.stringify(data, null, 2)*/}
-      <div className="mt-8">{<PotionGrid potions={potion} />}</div>
+      <div className="flex justify-center">
+        {" "}
+        <PotionFilters />
+      </div>
+
+      <div className="mt-8">{<PotionGrid potions={filteredPotion} />}</div>
     </main>
   );
 }
