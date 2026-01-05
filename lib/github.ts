@@ -101,6 +101,13 @@ export async function fetchRandomTrendingPotion() {
     // return data.items[randomIndex];
     return transformRepoToPotion(data.items[randomIndex], randomIndex);
   } catch (error) {
+    if (
+      error instanceof Error &&
+      "digest" in error &&
+      error.digest === "DYNAMIC_SERVER_USAGE"
+    ) {
+      throw error;
+    }
     console.error("Failed to Fetch potion", (error as Error).message);
     return null;
   }
