@@ -15,14 +15,22 @@ const geistMono = Geist_Mono({
 
 const is_Dev = process.env.NODE_ENV === "development";
 
-export const ORIGIN_URL = is_Dev ? "http://localhost:3000" : "";
+//export const ORIGIN_URL = is_Dev ? "http://localhost:3000" : "";
+export const ORIGIN_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://spirit-shop.vercel.app";
 
 export const metadata: Metadata = {
   title: "Spirit Shop",
   description: "Open Source Spirit Shop - Discover magical potions brewed",
+  //metadataBase: new URL(ORIGIN_URL),
+  //alternates: {
+  //  canonical: ORIGIN_URL,
+  //},
   metadataBase: new URL(ORIGIN_URL),
   alternates: {
-    canonical: ORIGIN_URL,
+    canonical: "/",
   },
 };
 

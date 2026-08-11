@@ -66,7 +66,22 @@ border-purple-700/30 shadow-lg transition-allhover:shadow-purple-500/20 hover:sh
     transparent 25%
   );
 } */
+/*@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media(width >= --theme(--breakpoint-sm)){
+    max-width: none;
+  }
+  @media(width >= 1400px){
+    max-width: 1400px;
+  }
+}
 
+@layer base{
+  *,::after,::backdrop,::before,::file-selector-button{
+    border-color: ;
+  }
+}*/
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
